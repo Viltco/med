@@ -1,0 +1,299 @@
+<odoo>
+
+    <!--    <record id="paper_format_picking_inh" model="report.paperformat">-->
+    <!--        <field name="name">Issuance Report</field>-->
+    <!--        <field name="default" eval="True"/>-->
+    <!--        <field name="format">custom</field>-->
+    <!--        <field name="page_height">99</field>-->
+    <!--        <field name="page_width">210</field>-->
+    <!--        <field name="orientation">Portrait</field>-->
+    <!--        <field name="margin_top">30</field>-->
+    <!--        <field name="margin_bottom">0</field>-->
+    <!--        <field name="margin_left">3</field>-->
+    <!--        <field name="margin_right">3</field>-->
+    <!--        <field name="header_line" eval="False"/>-->
+    <!--        <field name="header_spacing">28</field>-->
+    <!--        <field name="dpi">90</field>-->
+    <!--    </record>-->
+
+    <record id="paper_format_picking_inh"
+            model="report.paperformat">
+        <field name="name">European A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+    <report
+            id="issuance_report"
+            string="Issuance Report"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="picking_overall.report_picking_inh"
+            file="picking_overall.report_picking_inh"
+            paperformat="paper_format_picking_inh"
+    />
+
+    <!--    <template t-name="web.external_layout_standard">-->
+    <!--        <t t-foreach="docs" t-as="o">-->
+    <!--            <div t-attf-class="header o_company_#{res_company.id}_layout" t-att-style="report_header_style" width="100%">-->
+    <!--                <div class="first-page">-->
+    <!--                    <div class="row">-->
+    <!--                        <div class="col-4 text-left">-->
+    <!--                            <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" alt="Logo" width="45%"/>-->
+    <!--                        </div>-->
+    <!--                        <div class="col-8 text-center" style="font-size:14px;">-->
+    <!--                            <div class="text-left"><h5>New Advance College of Nursing</h5></div>-->
+    <!--                            <div class="text-left" style="margin-left:65px;">Contact: 0308-3338880</div>-->
+    <!--&lt;!&ndash;                            <div class="row">&ndash;&gt;-->
+    <!--                                <div class="text-left" style="margin-left:90px;">-->
+    <!--                                    <span class="text-left">Fee Receipt</span>-->
+    <!--                                </div>-->
+    <!--&lt;!&ndash;                                <div class="col-5 text-right">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <span class="text-right">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        Sr No#___________&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            &lt;!&ndash; support for custom footer &ndash;&gt;-->
+    <!--            <div t-attf-class="footer o_standard_footer o_company_#{res_company.id}_layout" position="attributes" id="footer">-->
+    <!--                <attribute name="t-if">-->
+    <!--&lt;!&ndash;                    <div class="row">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <div class="col-12" id="footer_center" style="font-size:12px; text-align:center;">&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <t>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <t t-set="current_date" t-value="datetime.datetime.now()"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </t>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;                        <span><strong>ORDER:</strong></span> <span t-field="o.partner_ref"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;                        <span><strong>REVISION:</strong></span> <span t-field="o.rev"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            &lt;!&ndash;                        <span><strong>PO DATE:</strong></span> <span t-field="o.date_order"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <span><strong>TIME:</strong></span> <span t-esc="current_date"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <span><strong>VENDOR NAME:</strong></span> <span t-field="o.partner_id.name"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+    <!--                </attribute>-->
+    <!--            </div>-->
+    <!--&lt;!&ndash;            <div t-attf-class="footer o_standard_footer o_company_#{res_company.id}_layout" position="after">&ndash;&gt;-->
+    <!--&lt;!&ndash;                <div t-attf-class="footer o_standard_footer o_company_#{res_company.id}_layout">&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <t t-if="custom_footer" t-raw="custom_footer"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+    <!--&lt;!&ndash;            </div>&ndash;&gt;-->
+    <!--            <div t-attf-class="article o_report_layout_standard o_company_#{res_company.id}_layout"-->
+    <!--                 t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"-->
+    <!--                 t-att-data-oe-lang="o and o.env.context.get('lang')">-->
+    <!--                <div class="pt-5">-->
+    <!--&lt;!&ndash;                    <xpath expr="." position="inside">&ndash;&gt;-->
+    <!--&lt;!&ndash;                        <link rel="stylesheet" type="text/css" href="/bookings/static/src/css/pdf_report_style.css"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    </xpath>&ndash;&gt;-->
+    <!--                    &lt;!&ndash; This div ensures that the address is not cropped by the header. &ndash;&gt;-->
+    <!--                    <t t-call="web.address_layout"/>-->
+    <!--                </div>-->
+    <!--                <t t-raw="0"/>-->
+
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+
+    <template id="report_picking_inh">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-foreach="docs" t-as="o">
+                    <!--                    <t t-call="purchase_order_report.your_custom_layout_header">-->
+                    <div class="page" style="margin-top:40px;font-size:14px;">
+                        <div>
+                            <div class="text-center"><h3>Issuance</h3></div>
+                            <div class="row" style="">
+                                <div class="col-4">
+                                    <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
+                                </div>
+                            </div>
+
+                            <table class="table table-sm" width="100%">
+<!--                                <span class="text-center"><h5>Description</h5></span>-->
+                                <tr>
+                                    <td style="padding:10px;">
+                                        <strong>Item</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Quantity</strong>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line" >
+
+                                    <tr>
+                                        <td style="padding-left:10px;">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.quantity_done"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                </tr>-->
+                                <tr>
+                                    <td class="text-center">Dept Incharge</td>
+                                    <td class="text-center">Received By	</td>
+                                    <td class="text-center">Passed By</td>
+                                    <td class="text-center">Issued By</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <table width="100%"><tr ><td style="border-top:2px dotted black;"></td></tr></table>
+                        <br/>
+                        <br/>
+
+                        <div style="page-break-inside: avoid;">
+                            <div class="text-center"><h3>Issuance</h3></div>
+                            <div class="row" style="">
+                                <div class="col-4">
+                                    <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
+                                </div>
+                            </div>
+
+                            <table class="table table-sm" width="100%">
+<!--                                <span class="text-center"><h5>Description</h5></span>-->
+                                <tr>
+                                    <td style="padding:10px;">
+                                        <strong>Item</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Quantity</strong>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line" >
+
+                                    <tr>
+                                        <td style="padding-left:10px;">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.quantity_done"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                </tr>-->
+                                <tr>
+                                    <td class="text-center">Dept Incharge</td>
+                                    <td class="text-center">Received By	</td>
+                                    <td class="text-center">Passed By</td>
+                                    <td class="text-center">Issued By</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <table width="100%"><tr >
+<!--                            <td width="3%"><span style="font-size:20px" class="fa">&#xf0c4;</span></td>-->
+                            <td style="border-top:2px dotted black;"/>
+
+                        </tr></table>
+                        <br/>
+                        <br/>
+
+                        <div style="page-break-inside: avoid;">
+                            <div class="text-center"><h3>Issuance</h3></div>
+                            <div class="row" style="">
+                                <div class="col-4">
+                                    <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
+                                </div>
+                            </div>
+
+                            <table class="table table-sm" width="100%">
+<!--                                <span class="text-center"><h5>Description</h5></span>-->
+                                <tr>
+                                    <td style="padding:10px;">
+                                        <strong>Item</strong>
+                                    </td>
+                                    <td>
+                                        <strong>Quantity</strong>
+                                    </td>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line" >
+
+                                    <tr>
+                                        <td style="padding-left:10px;">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.quantity_done"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                    <td class="text-center">----------------------------------------</td>
+                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                    <td class="text-center"><span t-field="o.dept_incharge"/></td>-->
+                                <!--                                </tr>-->
+                                <tr>
+                                    <td class="text-center">Dept Incharge</td>
+                                    <td class="text-center">Received By	</td>
+                                    <td class="text-center">Passed By</td>
+                                    <td class="text-center">Issued By</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

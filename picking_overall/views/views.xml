@@ -1,0 +1,67 @@
+<odoo>
+
+  <record id="stock_move_form_inh" model="ir.ui.view">
+    <field name="name">stock.move.form.inh</field>
+    <field name="model">stock.move</field>
+    <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='product_id']" position="attributes">
+        <attribute name="string">Item</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="stock_production_lot_form_inh" model="ir.ui.view">
+    <field name="name">stock.production.lot.form.inh</field>
+    <field name="model">stock.production.lot</field>
+    <field name="inherit_id" ref="stock.view_production_lot_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='product_id']" position="attributes">
+        <attribute name="string">Item</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="stock_picking_form_inh" model="ir.ui.view">
+    <field name="name">stock.picking.form.inh</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="attributes">
+        <attribute name="string">Item</attribute>
+      </xpath>
+
+      <xpath expr="//page[@name='extra']" position="after">
+
+        <page string="Sign">
+          <group col="4">
+            <field name="received_by"/>
+            <field name="dept_incharge"/>
+            <field name="passed_by"/>
+            <field name="issued_by"/>
+          </group>
+        </page>
+
+      </xpath>
+    </field>
+
+  </record>
+
+  <record model="ir.ui.menu" id="stock.menu_stock_inventory_control">
+    <field name="name">Items</field>
+  </record>
+
+  <record model="ir.ui.menu" id="stock.menu_product_variant_config_stock">
+    <field name="name">Items</field>
+  </record>
+
+  <record model="ir.ui.menu" id="stock.product_product_menu">
+    <field name="name">Items</field>
+  </record>
+
+</odoo>
