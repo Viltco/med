@@ -115,7 +115,10 @@
                         <div>
                             <div class="text-center"><h3>Issuance</h3></div>
                             <div class="row" style="">
-                                <div class="col-4">
+                                <div class="col-6">
+                                    <strong>Issuance Ref: </strong><span class="m-0" t-field="o.name"/>
+                                </div>
+                                <div class="col-6">
                                     <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
                                 </div>
                             </div>
@@ -174,8 +177,12 @@
 
                         <div style="page-break-inside: avoid;">
                             <div class="text-center"><h3>Issuance</h3></div>
+
                             <div class="row" style="">
-                                <div class="col-4">
+                                <div class="col-6">
+                                    <strong>Issuance Ref: </strong><span class="m-0" t-field="o.name"/>
+                                </div>
+                                <div class="col-6">
                                     <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
                                 </div>
                             </div>
@@ -239,7 +246,10 @@
                         <div style="page-break-inside: avoid;">
                             <div class="text-center"><h3>Issuance</h3></div>
                             <div class="row" style="">
-                                <div class="col-4">
+                                <div class="col-6">
+                                    <strong>Issuance Ref: </strong><span class="m-0" t-field="o.name"/>
+                                </div>
+                                <div class="col-6">
                                     <strong>Date: </strong><span class="m-0" t-field="o.scheduled_date"/>
                                 </div>
                             </div>
